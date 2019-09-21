@@ -59,18 +59,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "newProjectForms:build"
+            "browserTarget": "Angularette:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "newProjectForms:build:production"
+              "browserTarget": "Angularette:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "newProjectForms:build"
+            "browserTarget": "Angularette:build"
           }
         },
         "test": {
@@ -108,16 +108,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "newProjectForms:serve"
+            "devServerTarget": "Angularette:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "newProjectForms:serve:production"
+              "devServerTarget": "Angularette:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "newProjectForms"
+  "defaultProject": "Angularette"
 }
