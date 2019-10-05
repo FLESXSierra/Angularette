@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
+import { Person } from '../models/person';
 
 @Component({
   selector: 'app-person-form',
@@ -8,9 +9,10 @@ import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@ang
 })
 export class PersonFormComponent implements OnInit {
 
-  personForm:FormGroup;
-  
-  constructor(private formBuilder:FormBuilder) {
+  personForm: FormGroup;
+  personsSaved: Person[] = [];
+
+  constructor(private formBuilder: FormBuilder) {
 
    }
 
@@ -29,18 +31,24 @@ export class PersonFormComponent implements OnInit {
     // }, Validators.required);
 
     this.personForm = this.formBuilder.group({
-      'direcciones':this.formBuilder.group({
-        'address':['']
+      direcciones: this.formBuilder.group({
+        address: ['']
       }),
-      'name':[''],
-      'lastName': ['', Validators.pattern('[A-Z]')],
-      'age': ['', Validators.pattern('[0-9]')],
-      'id': ['', Validators.pattern('[0-9]')],
-      'goobbies': this.formBuilder.array([['']]),
-      'email': ['', Validators.email],
-      'hasBoobies': [true]
-    },{validators:Validators.required});
+      name: [''],
+      lastName: ['', Validators.pattern('^[a-zA-Z]+$')],
+      age: ['', Validators.pattern('^[0-9]+$')],
+      id: ['', Validators.pattern('^[0-9]+$')],
+      goobbies: this.formBuilder.array([['']]),
+      email: ['', Validators.email],
+      hasBoobies: [true]
+    }, { validators: [Validators.required]});
+  }
 
+  save() {
+    console.log(this.personForm);
+    this.personsSaved.push(this.personForm.value);
+    this.personForm.reset();
+    this.personForm.patchValue({hasBoobies: true});
   }
 
 }

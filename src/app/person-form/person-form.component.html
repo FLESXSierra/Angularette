@@ -1,22 +1,57 @@
 <form [formGroup]="personForm" >
-    <section fxLayout="row wrap" fxLayoutAlign="center center">
-        <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <section fxLayout="column" fxLayoutAlign="space-between none">
+        <mat-card fxFlex="100">
             <mat-card-title>Create a new owner</mat-card-title>
             <mat-card-content>
                 <label>PERSON COMPONENT OOOME</label>
-                <div class="example-container">
+                <div fxLayout="column" fxLayoutAlign="space-around none">
                     <mat-form-field>
-                        <input matInput placeholder="Input" >
+                        <input matInput placeholder="Name" formControlName="name" required>
                     </mat-form-field>
-                
-                    <mat-form-field>   
-                        <textarea matInput placeholder="Textarea"></textarea>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Last Name" formControlName="lastName">
                     </mat-form-field>
+
+                    <div fxLayout="row" fxLayoutAlign="space-around none">
+                        <mat-form-field fxFlex="33">
+                            <input matInput placeholder="Age" formControlName="age">
+                        </mat-form-field>
+                        <mat-form-field fxFlex="33">
+                            <input matInput placeholder="Id" formControlName="id">
+                        </mat-form-field>
+                        <mat-form-field fxFlex="33">
+                            <input matInput placeholder="Email" formControlName="email">
+                        </mat-form-field>
+                    </div>
+                        <mat-checkbox formControlName="hasBoobies">Has boobies </mat-checkbox>
+
+                    <div formGroupName="direcciones">
+                        <mat-form-field >
+                            <input matInput placeholder="Address" formControlName="address">
+                        </mat-form-field>
+                    </div>
+
                 </div>
+                {{personForm.value|json}}
+                {{personForm.errors|json}}
+
             </mat-card-content>
             <mat-card-actions>
-                
+              <button mat-raised-button (click)="save()" [disabled] = "!personForm.valid">Submit</button>
             </mat-card-actions>
+        </mat-card>
+        <br>
+        <mat-card fxFlex="100">
+            <mat-card-title>Table of person components</mat-card-title>
+            <mat-card-content>
+              <div *ngFor = "let person of personsSaved">
+                  <p>
+                      {{person|json}}
+                  </p>
+              </div>
+
+            </mat-card-content>
         </mat-card>
     </section>
 </form>

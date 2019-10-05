@@ -1,0 +1,7 @@
+ .mat-input-invalid .mat-input-placeholder {
+    color: cornflowerblue;
+}
+
+.mat-input-invalid .mat-input-ripple {
+    background-color: rgb(139, 168, 10);
+}
